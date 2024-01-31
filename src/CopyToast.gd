@@ -8,4 +8,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	 self.text = "Copied \"" + OS.get_clipboard() + "\""
+	var original_str = OS.get_clipboard()
+	var display_str = original_str.substr(0, 100)
+	if len(original_str) > 100:
+		display_str += "..."
+	display_str = display_str.replace("\n", " ... ")
+	self.text = "Copied \"" + display_str + "\""
