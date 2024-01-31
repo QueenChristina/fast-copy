@@ -1,0 +1,59 @@
+[gd_resource type="Theme" load_steps=7 format=2]
+
+[ext_resource path="res://assets/Open_Sans/OpenSans-Regular.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.823529, 0.184314, 0.203922, 1 )
+border_width_top = 2
+border_color = Color( 0.780392, 0.117647, 0.117647, 0 )
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 1, 0.458824, 0.545098, 1 )
+border_width_bottom = 5
+border_color = Color( 0.780392, 0.117647, 0.117647, 1 )
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.780392, 0.117647, 0.117647, 1 )
+border_width_top = 5
+border_color = Color( 0.780392, 0.117647, 0.117647, 0 )
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+
+[sub_resource type="DynamicFont" id=1]
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 1 )
+
+[resource]
+default_font = SubResource( 1 )
+Button/colors/font_color = Color( 0, 0.0431373, 0.505882, 1 )
+Button/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+Button/colors/font_color_focus = Color( 0, 0, 0, 1 )
+Button/colors/font_color_hover = Color( 0, 0, 0, 1 )
+Button/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+Button/constants/hseparation = 0
+Button/fonts/font = null
+Button/styles/disabled = null
+Button/styles/focus = SubResource( 2 )
+Button/styles/hover = SubResource( 3 )
+Button/styles/normal = SubResource( 4 )
+Button/styles/pressed = SubResource( 5 )
+LineEdit/colors/clear_button_color = Color( 1, 0.294118, 0.294118, 1 )
+LineEdit/colors/clear_button_color_pressed = Color( 0.639216, 0, 0, 1 )
+LineEdit/colors/cursor_color = Color( 0.505882, 0.929412, 1, 1 )
+LineEdit/colors/font_color = Color( 1, 1, 1, 1 )
+LineEdit/colors/font_color_selected = Color( 0.933333, 0.701961, 1, 1 )
+LineEdit/colors/font_color_uneditable = Color( 1, 1, 1, 0.658824 )
+LineEdit/colors/selection_color = Color( 0.968627, 0.431373, 1, 0.435294 )
+LineEdit/constants/minimum_spaces = 0
+LineEdit/fonts/font = null
+LineEdit/icons/clear = null
+LineEdit/styles/focus = null
+LineEdit/styles/normal = null
+LineEdit/styles/read_only = null
