@@ -2,6 +2,10 @@
 
 See all your items in one clipboard, making it easy to copy and paste items all from one source.
 
+## Try it yourself.
+
+[Download from this itch.io link.](https://eggcat.itch.io/fast-copy)
+
 ## How it works
 
 * Add items to copy by writing down your important notes.
