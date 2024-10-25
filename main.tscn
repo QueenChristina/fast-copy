@@ -1,39 +1,13 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://src/CopyToast.gd" type="Script" id=2]
 [ext_resource path="res://assets/theme.tres" type="Theme" id=3]
-[ext_resource path="res://src/NotesContainer.gd" type="Script" id=6]
+[ext_resource path="res://src/NotesContainer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/FileTabsHBox.gd" type="Script" id=6]
 
 [sub_resource type="StyleBoxEmpty" id=2]
 content_margin_top = 4.0
-
-[sub_resource type="StyleBoxFlat" id=18]
-content_margin_left = 8.0
-content_margin_right = 8.0
-bg_color = Color( 0.215686, 0.215686, 0.247059, 1 )
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-
-[sub_resource type="StyleBoxEmpty" id=4]
-
-[sub_resource type="StyleBoxEmpty" id=5]
-
-[sub_resource type="StyleBoxEmpty" id=6]
-
-[sub_resource type="StyleBoxEmpty" id=7]
-
-[sub_resource type="StyleBoxEmpty" id=8]
-
-[sub_resource type="StyleBoxEmpty" id=9]
-
-[sub_resource type="StyleBoxEmpty" id=10]
-
-[sub_resource type="StyleBoxEmpty" id=11]
-
-[sub_resource type="StyleBoxEmpty" id=12]
-
-[sub_resource type="StyleBoxEmpty" id=13]
 
 [sub_resource type="StyleBoxFlat" id=14]
 content_margin_left = 8.0
@@ -79,7 +53,7 @@ __meta__ = {
 
 [node name="Menu" type="PanelContainer" parent="VBoxContainer"]
 margin_right = 1024.0
-margin_bottom = 32.0
+margin_bottom = 40.0
 custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -88,7 +62,8 @@ __meta__ = {
 [node name="Tabs" type="HBoxContainer" parent="VBoxContainer/Menu"]
 margin_top = 4.0
 margin_right = 1024.0
-margin_bottom = 32.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 36 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -96,7 +71,7 @@ __meta__ = {
 [node name="Save" type="Button" parent="VBoxContainer/Menu/Tabs"]
 self_modulate = Color( 0.301961, 1, 0.329412, 1 )
 margin_right = 63.0
-margin_bottom = 28.0
+margin_bottom = 36.0
 rect_min_size = Vector2( 63, 0 )
 hint_tooltip = "Save notes"
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -105,48 +80,29 @@ text = "SAVE"
 [node name="VSeparator" type="VSeparator" parent="VBoxContainer/Menu/Tabs"]
 margin_left = 67.0
 margin_right = 71.0
-margin_bottom = 28.0
+margin_bottom = 36.0
 
-[node name="Tab" type="PanelContainer" parent="VBoxContainer/Menu/Tabs"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Menu/Tabs"]
 margin_left = 75.0
-margin_right = 187.0
-margin_bottom = 28.0
-hint_tooltip = "IGNORE; didn't finish functionality"
-custom_styles/panel = SubResource( 18 )
+margin_right = 820.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="HBox" type="HBoxContainer" parent="VBoxContainer/Menu/Tabs/Tab"]
-margin_left = 8.0
-margin_right = 104.0
-margin_bottom = 28.0
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Menu/Tabs/ScrollContainer"]
+margin_right = 745.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="VBoxContainer/Menu/Tabs/Tab/HBox"]
-margin_right = 60.0
-margin_bottom = 28.0
-custom_colors/font_color = Color( 1, 1, 1, 0.866667 )
-custom_styles/hover = SubResource( 4 )
-custom_styles/pressed = SubResource( 5 )
-custom_styles/focus = SubResource( 6 )
-custom_styles/disabled = SubResource( 7 )
-custom_styles/normal = SubResource( 8 )
-text = "TabTitle"
+[node name="FileTabsHBox" type="HBoxContainer" parent="VBoxContainer/Menu/Tabs/ScrollContainer/HBoxContainer"]
+margin_bottom = 36.0
+script = ExtResource( 6 )
 
-[node name="TextureButton" type="Button" parent="VBoxContainer/Menu/Tabs/Tab/HBox"]
-margin_left = 64.0
-margin_right = 96.0
-margin_bottom = 28.0
-rect_min_size = Vector2( 32, 0 )
-custom_colors/font_color = Color( 1, 1, 1, 0.682353 )
-custom_styles/hover = SubResource( 9 )
-custom_styles/pressed = SubResource( 10 )
-custom_styles/focus = SubResource( 11 )
-custom_styles/disabled = SubResource( 12 )
-custom_styles/normal = SubResource( 13 )
-text = "x"
-
-[node name="AddTab" type="Button" parent="VBoxContainer/Menu/Tabs"]
-margin_left = 191.0
-margin_right = 223.0
-margin_bottom = 28.0
+[node name="AddFileTab" type="Button" parent="VBoxContainer/Menu/Tabs/ScrollContainer/HBoxContainer"]
+margin_left = 4.0
+margin_right = 36.0
+margin_bottom = 36.0
 rect_min_size = Vector2( 32, 0 )
 custom_colors/font_color = Color( 1, 1, 1, 0.592157 )
 custom_styles/hover = SubResource( 14 )
@@ -156,26 +112,17 @@ custom_styles/disabled = SubResource( 15 )
 custom_styles/normal = SubResource( 15 )
 text = "+"
 
-[node name="Container" type="Container" parent="VBoxContainer/Menu/Tabs"]
-margin_left = 227.0
-margin_right = 820.0
-margin_bottom = 28.0
-size_flags_horizontal = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Settings" type="HBoxContainer" parent="VBoxContainer/Menu/Tabs"]
 margin_left = 824.0
 margin_right = 1024.0
-margin_bottom = 28.0
+margin_bottom = 36.0
 rect_min_size = Vector2( 200, 0 )
 alignment = 2
 
 [node name="DeleteNote" type="Button" parent="VBoxContainer/Menu/Tabs/Settings"]
 self_modulate = Color( 0.647059, 0, 0, 1 )
 margin_right = 64.0
-margin_bottom = 28.0
+margin_bottom = 36.0
 hint_tooltip = "Delete selected note"
 size_flags_horizontal = 3
 text = "X"
@@ -187,7 +134,7 @@ __meta__ = {
 self_modulate = Color( 1, 0.866667, 0, 1 )
 margin_left = 68.0
 margin_right = 132.0
-margin_bottom = 28.0
+margin_bottom = 36.0
 hint_tooltip = "Move note up"
 size_flags_horizontal = 3
 text = "/\\"
@@ -196,7 +143,7 @@ text = "/\\"
 self_modulate = Color( 1, 0.866667, 0, 1 )
 margin_left = 136.0
 margin_right = 200.0
-margin_bottom = 28.0
+margin_bottom = 36.0
 hint_tooltip = "Move note down"
 size_flags_horizontal = 3
 text = "\\/"
@@ -204,76 +151,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NotesContainer" type="ScrollContainer" parent="VBoxContainer"]
-margin_top = 36.0
-margin_right = 1024.0
-margin_bottom = 563.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-script = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Notes" type="VBoxContainer" parent="VBoxContainer/NotesContainer"]
-margin_right = 1024.0
-margin_bottom = 527.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Title" type="MarginContainer" parent="VBoxContainer/NotesContainer/Notes"]
-margin_right = 1024.0
-margin_bottom = 43.0
-custom_constants/margin_right = 5
-custom_constants/margin_top = 5
-custom_constants/margin_left = 5
-custom_constants/margin_bottom = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/NotesContainer/Notes/Title"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 1019.0
-margin_bottom = 38.0
-text = "Title"
-align = 1
-
-[node name="Add" type="VBoxContainer" parent="VBoxContainer/NotesContainer/Notes"]
-margin_top = 47.0
-margin_right = 1024.0
-margin_bottom = 75.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/NotesContainer/Notes/Add"]
-margin_right = 1024.0
-margin_bottom = 28.0
-
-[node name="AddNote" type="Button" parent="VBoxContainer/NotesContainer/Notes/Add/HBoxContainer"]
-self_modulate = Color( 0.341176, 1, 0.572549, 1 )
-margin_right = 338.0
-margin_bottom = 28.0
-size_flags_horizontal = 3
-text = "+ Add Note"
-
-[node name="AddMultiNote" type="Button" parent="VBoxContainer/NotesContainer/Notes/Add/HBoxContainer"]
-self_modulate = Color( 0.341176, 1, 0.572549, 1 )
-margin_left = 342.0
-margin_right = 681.0
-margin_bottom = 28.0
-size_flags_horizontal = 3
-text = "+ Add Multiline Note"
-
-[node name="AddCopyText" type="Button" parent="VBoxContainer/NotesContainer/Notes/Add/HBoxContainer"]
-self_modulate = Color( 0.341176, 1, 0.572549, 1 )
-margin_left = 685.0
-margin_right = 1024.0
-margin_bottom = 28.0
-size_flags_horizontal = 3
-text = "+ Add CopyText"
+[node name="NotesContainer" parent="VBoxContainer" instance=ExtResource( 4 )]
+margin_top = 44.0
 
 [node name="CopyToast" type="PanelContainer" parent="VBoxContainer"]
 margin_top = 567.0
@@ -307,9 +186,5 @@ autowrap = true
 script = ExtResource( 2 )
 
 [connection signal="pressed" from="VBoxContainer/Menu/Tabs/Save" to="." method="_on_Save_pressed"]
-[connection signal="pressed" from="VBoxContainer/Menu/Tabs/Settings/DeleteNote" to="VBoxContainer/NotesContainer" method="_on_DeleteNote_pressed"]
-[connection signal="pressed" from="VBoxContainer/Menu/Tabs/Settings/ShiftUp" to="VBoxContainer/NotesContainer" method="_on_ShiftUp_pressed"]
-[connection signal="pressed" from="VBoxContainer/Menu/Tabs/Settings/ShiftDown" to="VBoxContainer/NotesContainer" method="_on_ShiftDown_pressed"]
-[connection signal="pressed" from="VBoxContainer/NotesContainer/Notes/Add/HBoxContainer/AddNote" to="VBoxContainer/NotesContainer" method="_on_AddNote_pressed"]
-[connection signal="pressed" from="VBoxContainer/NotesContainer/Notes/Add/HBoxContainer/AddMultiNote" to="VBoxContainer/NotesContainer" method="_on_AddMultiNote_pressed"]
-[connection signal="pressed" from="VBoxContainer/NotesContainer/Notes/Add/HBoxContainer/AddCopyText" to="VBoxContainer/NotesContainer" method="_on_AddCopyText_pressed"]
+[connection signal="file_tab_pressed" from="VBoxContainer/Menu/Tabs/ScrollContainer/HBoxContainer/FileTabsHBox" to="." method="_on_FileTabsHBox_file_tab_pressed"]
+[connection signal="pressed" from="VBoxContainer/Menu/Tabs/ScrollContainer/HBoxContainer/AddFileTab" to="." method="_on_AddFileTab_pressed"]

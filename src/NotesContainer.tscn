@@ -1,0 +1,78 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/NotesContainer.gd" type="Script" id=1]
+
+[node name="NotesContainer" type="ScrollContainer"]
+margin_top = 36.0
+margin_right = 1024.0
+margin_bottom = 563.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Notes" type="VBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 527.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="MarginContainer" parent="Notes"]
+margin_right = 1024.0
+margin_bottom = 34.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="Notes/Title"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 1019.0
+margin_bottom = 29.0
+text = "Title"
+align = 1
+
+[node name="Add" type="VBoxContainer" parent="Notes"]
+margin_top = 38.0
+margin_right = 1024.0
+margin_bottom = 58.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Notes/Add"]
+margin_right = 1024.0
+margin_bottom = 20.0
+
+[node name="AddNote" type="Button" parent="Notes/Add/HBoxContainer"]
+self_modulate = Color( 0.341176, 1, 0.572549, 1 )
+margin_right = 338.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "+ Add Note"
+
+[node name="AddMultiNote" type="Button" parent="Notes/Add/HBoxContainer"]
+self_modulate = Color( 0.341176, 1, 0.572549, 1 )
+margin_left = 342.0
+margin_right = 681.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "+ Add Multiline Note"
+
+[node name="AddCopyText" type="Button" parent="Notes/Add/HBoxContainer"]
+self_modulate = Color( 0.341176, 1, 0.572549, 1 )
+margin_left = 685.0
+margin_right = 1024.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "+ Add CopyText"
+
+[connection signal="pressed" from="Notes/Add/HBoxContainer/AddNote" to="." method="_on_AddNote_pressed"]
+[connection signal="pressed" from="Notes/Add/HBoxContainer/AddMultiNote" to="." method="_on_AddMultiNote_pressed"]
+[connection signal="pressed" from="Notes/Add/HBoxContainer/AddCopyText" to="." method="_on_AddCopyText_pressed"]

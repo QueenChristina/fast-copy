@@ -23,14 +23,26 @@ onready var notes_vbox = $"Notes"
 onready var multinote = preload("res://src/MultiNote.tscn")
 onready var copytext = preload("res://src/CopyText.tscn")
 onready var linenote = preload("res://src/Note.tscn")
+onready var title_line = $"Notes/Title/LineEdit"
 var curr_selected_note
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
+	
+func clear_notes():
+	data_notes = []
+	var num_notes = notes_vbox.get_child_count() - 2
+	if num_notes > 0:
+		for child_index in range(notes_vbox.get_child_count() - 2, 0, -1):
+			# Excluding Add Hbox and Title
+			var note_child = notes_vbox.get_children()[child_index]
+			notes_vbox.remove_child(note_child)
+			note_child.queue_free()
+			curr_selected_note = null
 
 # Notes given as dictionary
-func load_data(notes):
+func load_data(notes, title = ""):
 	for note in notes:
 		if note.type == "CopyNote":
 			add_note_child(copytext, false, note.text, note.font_color)

@@ -1,0 +1,73 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://src/FileTab.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=18]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color( 0.215686, 0.215686, 0.247059, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="StyleBoxEmpty" id=12]
+
+[sub_resource type="StyleBoxEmpty" id=13]
+
+[node name="FileTab" type="PanelContainer"]
+margin_right = 112.0
+margin_bottom = 28.0
+hint_tooltip = "IGNORE; didn't finish functionality"
+custom_styles/panel = SubResource( 18 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBox" type="HBoxContainer" parent="."]
+margin_left = 8.0
+margin_right = 104.0
+margin_bottom = 28.0
+
+[node name="TabButton" type="Button" parent="HBox"]
+margin_right = 50.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 50, 0 )
+custom_colors/font_color = Color( 1, 1, 1, 0.866667 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
+text = "TabTitle"
+
+[node name="CloseButton" type="Button" parent="HBox"]
+margin_left = 54.0
+margin_right = 86.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 32, 0 )
+custom_colors/font_color = Color( 1, 1, 1, 0.682353 )
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
+text = "x"
+
+[connection signal="pressed" from="HBox/TabButton" to="." method="_on_TabButton_pressed"]
+[connection signal="pressed" from="HBox/CloseButton" to="." method="_on_CloseButton_pressed"]
