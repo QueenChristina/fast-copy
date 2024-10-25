@@ -3,7 +3,7 @@
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://src/CopyToast.gd" type="Script" id=2]
 [ext_resource path="res://assets/theme.tres" type="Theme" id=3]
-[ext_resource path="res://src/NotesContainer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/NotesContainer.gd" type="Script" id=4]
 [ext_resource path="res://src/FileTabsHBox.gd" type="Script" id=6]
 
 [sub_resource type="StyleBoxEmpty" id=2]
@@ -151,8 +151,76 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NotesContainer" parent="VBoxContainer" instance=ExtResource( 4 )]
+[node name="NotesContainer" type="ScrollContainer" parent="VBoxContainer"]
 margin_top = 44.0
+margin_right = 1024.0
+margin_bottom = 563.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Notes" type="VBoxContainer" parent="VBoxContainer/NotesContainer"]
+margin_right = 1024.0
+margin_bottom = 519.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="MarginContainer" parent="VBoxContainer/NotesContainer/Notes"]
+margin_right = 1024.0
+margin_bottom = 43.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/NotesContainer/Notes/Title"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 1019.0
+margin_bottom = 38.0
+text = "Title"
+align = 1
+
+[node name="Add" type="VBoxContainer" parent="VBoxContainer/NotesContainer/Notes"]
+margin_top = 47.0
+margin_right = 1024.0
+margin_bottom = 75.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/NotesContainer/Notes/Add"]
+margin_right = 1024.0
+margin_bottom = 28.0
+
+[node name="AddNote" type="Button" parent="VBoxContainer/NotesContainer/Notes/Add/HBoxContainer"]
+self_modulate = Color( 0.341176, 1, 0.572549, 1 )
+margin_right = 338.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+text = "+ Add Note"
+
+[node name="AddMultiNote" type="Button" parent="VBoxContainer/NotesContainer/Notes/Add/HBoxContainer"]
+self_modulate = Color( 0.341176, 1, 0.572549, 1 )
+margin_left = 342.0
+margin_right = 681.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+text = "+ Add Multiline Note"
+
+[node name="AddCopyText" type="Button" parent="VBoxContainer/NotesContainer/Notes/Add/HBoxContainer"]
+self_modulate = Color( 0.341176, 1, 0.572549, 1 )
+margin_left = 685.0
+margin_right = 1024.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+text = "+ Add CopyText"
 
 [node name="CopyToast" type="PanelContainer" parent="VBoxContainer"]
 margin_top = 567.0
@@ -188,3 +256,9 @@ script = ExtResource( 2 )
 [connection signal="pressed" from="VBoxContainer/Menu/Tabs/Save" to="." method="_on_Save_pressed"]
 [connection signal="file_tab_pressed" from="VBoxContainer/Menu/Tabs/ScrollContainer/HBoxContainer/FileTabsHBox" to="." method="_on_FileTabsHBox_file_tab_pressed"]
 [connection signal="pressed" from="VBoxContainer/Menu/Tabs/ScrollContainer/HBoxContainer/AddFileTab" to="." method="_on_AddFileTab_pressed"]
+[connection signal="pressed" from="VBoxContainer/Menu/Tabs/Settings/DeleteNote" to="VBoxContainer/NotesContainer" method="_on_DeleteNote_pressed"]
+[connection signal="pressed" from="VBoxContainer/Menu/Tabs/Settings/ShiftUp" to="VBoxContainer/NotesContainer" method="_on_ShiftUp_pressed"]
+[connection signal="pressed" from="VBoxContainer/Menu/Tabs/Settings/ShiftDown" to="VBoxContainer/NotesContainer" method="_on_ShiftDown_pressed"]
+[connection signal="pressed" from="VBoxContainer/NotesContainer/Notes/Add/HBoxContainer/AddNote" to="VBoxContainer/NotesContainer" method="_on_AddNote_pressed"]
+[connection signal="pressed" from="VBoxContainer/NotesContainer/Notes/Add/HBoxContainer/AddMultiNote" to="VBoxContainer/NotesContainer" method="_on_AddMultiNote_pressed"]
+[connection signal="pressed" from="VBoxContainer/NotesContainer/Notes/Add/HBoxContainer/AddCopyText" to="VBoxContainer/NotesContainer" method="_on_AddCopyText_pressed"]
